@@ -1,4 +1,11 @@
-import { pgEnum, pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  pgEnum,
+  pgTable,
+  timestamp,
+  uuid,
+  varchar,
+} from 'drizzle-orm/pg-core';
 
 export const roleEnumUsers = pgEnum('role_enum_user', ['USER', 'SUPER_ADMIN']);
 
@@ -8,6 +15,7 @@ const users = pgTable('users', {
   password_hash: varchar('password_hash', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).notNull().unique(),
   role: roleEnumUsers('role').default('USER').notNull(),
+  isDemo: boolean('is_demo').notNull().default(false),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at')
     .notNull()

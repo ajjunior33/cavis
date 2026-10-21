@@ -18,7 +18,9 @@ export class DrizzleService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleInit() {
-    await this.pool.connect();
+    // Só valida a conexão; sem release() o pool.end() do shutdown nunca termina.
+    const client = await this.pool.connect();
+    client.release();
   }
 
   async onModuleDestroy() {

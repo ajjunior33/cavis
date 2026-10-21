@@ -18,12 +18,13 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./test/jest-e2e.json",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed:plans": "tsx --env-file=.env src/shared/database/seeds/plans.seed.ts"
+    "db:seed:plans": "tsx --env-file=.env src/shared/database/seeds/plans.seed.ts",
+    "db:seed:users": "tsx --env-file=.env src/shared/database/seeds/users.seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^12.0.1",
@@ -31,6 +32,7 @@
     "@nestjs/core": "^12.0.1",
     "@nestjs/jwt": "^12.0.3",
     "@nestjs/platform-express": "^12.0.1",
+    "@nestjs/throttler": "^6.7.1",
     "argon2": "^0.45.1",
     "cookie-parser": "^1.4.7",
     "drizzle-kit": "^0.31.11",
