@@ -24,6 +24,9 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:seed:plans": "tsx --env-file=.env src/shared/database/seeds/plans.seed.ts",
+    "db:seed:moods": "tsx --env-file=.env src/shared/database/seeds/moods.seed.ts",
+    "db:seed:contents": "tsx --env-file=.env src/shared/database/seeds/daily-contents.seed.ts",
+    "db:seed": "npm run db:seed:moods && npm run db:seed:plans && npm run db:seed:contents && npm run db:seed:users",
     "db:seed:users": "tsx --env-file=.env src/shared/database/seeds/users.seed.ts"
   },
   "dependencies": {
