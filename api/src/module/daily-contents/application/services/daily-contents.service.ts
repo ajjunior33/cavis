@@ -32,6 +32,21 @@ export class DailyContentsService {
     return { ...content, moods };
   }
 
+  /**
+   * Escolhe o conteúdo do dia para um mood. A escolha é determinística por
+   * data, então o usuário vê o mesmo conteúdo durante todo o dia.
+   */
+  public async pickForMood(moodId: string, localDate: string) {
+    const contents = await this.dailyContentsRepository.getAllByMoodId(moodId);
+
+    if (contents.length === 0) return null;
+
+    const sorted = [...contents].sort((a, b) => a.id.localeCompare(b.id));
+    const dayIndex = Math.floor(Date.parse(localDate) / 86_400_000);
+
+    return sorted[dayIndex % sorted.length];
+  }
+
   public async create(data: CreateDailyContentDTO) {
     const moodIds = [...new Set(data.mood_ids ?? [])];
     await this.assertMoodsExist(moodIds);

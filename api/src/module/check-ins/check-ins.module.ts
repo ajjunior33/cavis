@@ -8,5 +8,6 @@ import { CheckInsController } from './presentation/http/controllers/check-ins.co
   imports: [MoodsModule],
   providers: [CheckInsService, CheckInsRepository],
   controllers: [CheckInsController],
+  exports: [CheckInsService],
 })
 export class CheckInsModule {}

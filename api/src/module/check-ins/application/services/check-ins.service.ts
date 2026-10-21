@@ -12,8 +12,8 @@ export class CheckInsService {
     private readonly moodsService: MoodsService,
   ) {}
 
-  public async list(userId: string) {
-    return this.checkInsRepository.getAllByUserId(userId);
+  public async list(userId: string, limit?: number) {
+    return this.checkInsRepository.getAllByUserId(userId, limit);
   }
 
   public async create(userId: string, data: CreateCheckInDTO) {
@@ -23,9 +23,7 @@ export class CheckInsService {
       throw new NotFoundException("O 'mood' informado não foi encontrado.");
     }
 
-    const localDate = new Date().toLocaleDateString('en-CA', {
-      timeZone: TIMEZONE,
-    });
+    const localDate = this.getTodayLocalDate();
 
     return this.checkInsRepository.create({
       userId,
@@ -33,5 +31,16 @@ export class CheckInsService {
       note: data.note,
       localDate,
     });
+  }
+
+  public async findLatestOfToday(userId: string) {
+    return this.checkInsRepository.findLatestByUserIdAndLocalDate(
+      userId,
+      this.getTodayLocalDate(),
+    );
+  }
+
+  public getTodayLocalDate(): string {
+    return new Date().toLocaleDateString('en-CA', { timeZone: TIMEZONE });
   }
 }
