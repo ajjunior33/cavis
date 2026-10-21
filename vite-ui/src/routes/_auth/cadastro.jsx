@@ -48,7 +48,7 @@ function CadastroPage() {
 
       if (session) {
         setSession(session)
-        navigate({ to: '/home' })
+        navigate({ to: '/hoje' })
       } else {
         navigate({ to: '/login' })
       }

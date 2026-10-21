@@ -6,7 +6,7 @@ import {
   useMatches,
   useNavigate,
 } from '@tanstack/react-router'
-import { House, LogOut, Search, User } from 'lucide-react'
+import { LogOut, Search, Sun, SmilePlus, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { queryClient } from '@/lib/query-client'
 import { useAuthStore } from '@/stores/auth-store'
@@ -21,7 +21,8 @@ export const Route = createFileRoute('/_app')({
 })
 
 const TABS = [
-  { to: '/home', label: 'Home', icon: House },
+  { to: '/hoje', label: 'Hoje', icon: Sun },
+  { to: '/checkin', label: 'Check-in', icon: SmilePlus },
   { to: '/buscar', label: 'Buscar', icon: Search },
   { to: '/perfil', label: 'Perfil', icon: User },
 ]
@@ -63,7 +64,7 @@ function AppLayout() {
         </main>
 
         <nav aria-label="Navegação principal" className="shrink-0 border-t bg-surface pb-safe px-safe">
-          <ul className="grid grid-cols-3">
+          <ul className="grid grid-cols-4">
             {TABS.map(({ to, label, icon: Icon }) => (
               <li key={to}>
                 {/* O Link marca a rota ativa com data-status="active" e aria-current="page" */}

@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AppBuscarRouteImport } from './routes/_app/buscar'
+import { Route as AppCheckinRouteImport } from './routes/_app/checkin'
+import { Route as AppHojeRouteImport } from './routes/_app/hoje'
 import { Route as AppHomeRouteImport } from './routes/_app/home'
 import { Route as AppPerfilRouteImport } from './routes/_app/perfil'
 import { Route as AuthCadastroRouteImport } from './routes/_auth/cadastro'
@@ -34,6 +36,16 @@ const AuthRoute = AuthRouteImport.update({
 const AppBuscarRoute = AppBuscarRouteImport.update({
   id: '/buscar',
   path: '/buscar',
+  getParentRoute: () => AppRoute,
+})
+const AppCheckinRoute = AppCheckinRouteImport.update({
+  id: '/checkin',
+  path: '/checkin',
+  getParentRoute: () => AppRoute,
+})
+const AppHojeRoute = AppHojeRouteImport.update({
+  id: '/hoje',
+  path: '/hoje',
   getParentRoute: () => AppRoute,
 })
 const AppHomeRoute = AppHomeRouteImport.update({
@@ -59,6 +71,8 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
 
 const AppRouteChildren = {
   AppBuscarRoute: AppBuscarRoute,
+  AppCheckinRoute: AppCheckinRoute,
+  AppHojeRoute: AppHojeRoute,
   AppHomeRoute: AppHomeRoute,
   AppPerfilRoute: AppPerfilRoute,
 }

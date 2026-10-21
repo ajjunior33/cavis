@@ -1,10 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
+// /home foi substituída por /hoje; mantida só para links e favoritos antigos
 export const Route = createFileRoute('/_app/home')({
-  staticData: { title: 'Home' },
-  component: HomePage,
+  beforeLoad: () => {
+    throw redirect({ to: '/hoje', replace: true })
+  },
 })
-
-function HomePage() {
-  return <p className="text-muted-foreground">Conteúdo da Home.</p>
-}

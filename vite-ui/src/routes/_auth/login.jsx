@@ -30,7 +30,7 @@ function LoginPage() {
     mutationFn: login,
     onSuccess: (session) => {
       setSession(session)
-      navigate({ to: '/home' })
+      navigate({ to: '/hoje' })
     },
     onError: (error) => {
       if (classifyAuthError(error) === 'invalid-credentials') {

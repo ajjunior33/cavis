@@ -5,6 +5,6 @@ export const Route = createFileRoute('/')({
   beforeLoad: () => {
     const isAuthenticated = useAuthStore.getState().isAuthenticated()
 
-    throw redirect({ to: isAuthenticated ? '/home' : '/login' })
+    throw redirect({ to: isAuthenticated ? '/hoje' : '/login' })
   },
 })
