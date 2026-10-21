@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
+# Clavis — Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PWA mobile first do **Clavis**, app de bem-estar emocional (check-in de humor, conteúdo do dia, planos temáticos e jornada). Consome a API em [`../api`](../api). Visão geral do projeto em [`../README.md`](../README.md).
 
-Currently, two official plugins are available:
+## Executar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requer Node.js 24+ e a API rodando.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+cp .env.example .env     # ajuste VITE_API_URL para a URL da API
+npm run dev              # http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+| Comando | O que faz |
+| --- | --- |
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | `tsc -b` + build de produção em `dist/` |
+| `npm run preview` | Serve o build localmente |
+| `npm run lint` | ESLint |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Variáveis de ambiente
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Variável | Exemplo | Descrição |
+| --- | --- | --- |
+| `VITE_API_URL` | `http://localhost:3333` | URL base da API. Também gera a regra `NetworkOnly` do service worker |
 
-```
+## Stack
+
+React 19 · Vite 8 · TanStack Router (rotas por arquivo, `src/routes`) · TanStack Query · Zustand · React Hook Form + Zod · Tailwind 4 · shadcn/Base UI · Axios · vite-plugin-pwa.
+
+Lista completa de pacotes no [README da raiz](../README.md#pacotes-instalados).
+
+## Rotas
+
+| Rota | Tela |
+| --- | --- |
+| `/login`, `/cadastro` | Autenticação |
+| `/home`, `/hoje` | Início e conteúdo do dia |
+| `/checkin` | Check-in de humor |
+| `/planos`, `/planos/$planId` | Lista e detalhe dos planos |
+| `/jornada` | Check-ins recentes e progresso |
+| `/buscar` | Busca |
+| `/perfil` | Dados do usuário e troca de senha |
+
+`src/routeTree.gen.js` é gerado pelo plugin do TanStack Router; não edite à mão.
+
+## PWA
+
+O app é instalável e o shell fica em precache. Respostas da API **nunca** são cacheadas (`NetworkOnly`). Os ícones são gerados por `scripts/generate-icons.mjs`.
