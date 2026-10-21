@@ -1,0 +1,1 @@
+CREATE INDEX "idx_check_ins_user_date" ON "check_ins" USING btree ("user_id","checked_at" DESC NULLS LAST);
