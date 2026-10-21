@@ -6,7 +6,7 @@ import {
   useMatches,
   useNavigate,
 } from '@tanstack/react-router'
-import { BookOpen, LogOut, Search, Sun, SmilePlus, User } from 'lucide-react'
+import { BookOpen, LogOut, Route as RouteIcon, Sun, SmilePlus, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { queryClient } from '@/lib/query-client'
 import { useAuthStore } from '@/stores/auth-store'
@@ -25,7 +25,8 @@ const TABS = [
   { to: '/checkin', label: 'Check-in', icon: SmilePlus },
   // Fica ativo também em /planos/:planId (o Link casa por prefixo)
   { to: '/planos', label: 'Planos', icon: BookOpen },
-  { to: '/buscar', label: 'Buscar', icon: Search },
+  // Máximo de 5 itens para caber em 360px: "Buscar" (ainda um placeholder) deu lugar à Jornada
+  { to: '/jornada', label: 'Jornada', icon: RouteIcon },
   { to: '/perfil', label: 'Perfil', icon: User },
 ]
 

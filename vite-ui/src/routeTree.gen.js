@@ -16,6 +16,7 @@ import { Route as AppBuscarRouteImport } from './routes/_app/buscar'
 import { Route as AppCheckinRouteImport } from './routes/_app/checkin'
 import { Route as AppHojeRouteImport } from './routes/_app/hoje'
 import { Route as AppHomeRouteImport } from './routes/_app/home'
+import { Route as AppJornadaRouteImport } from './routes/_app/jornada'
 import { Route as AppPerfilRouteImport } from './routes/_app/perfil'
 import { Route as AuthCadastroRouteImport } from './routes/_auth/cadastro'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
@@ -55,6 +56,11 @@ const AppHomeRoute = AppHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AppRoute,
 })
+const AppJornadaRoute = AppJornadaRouteImport.update({
+  id: '/jornada',
+  path: '/jornada',
+  getParentRoute: () => AppRoute,
+})
 const AppPerfilRoute = AppPerfilRouteImport.update({
   id: '/perfil',
   path: '/perfil',
@@ -86,6 +92,7 @@ const AppRouteChildren = {
   AppCheckinRoute: AppCheckinRoute,
   AppHojeRoute: AppHojeRoute,
   AppHomeRoute: AppHomeRoute,
+  AppJornadaRoute: AppJornadaRoute,
   AppPerfilRoute: AppPerfilRoute,
   AppPlanosPlanIdRoute: AppPlanosPlanIdRoute,
   AppPlanosIndexRoute: AppPlanosIndexRoute,
