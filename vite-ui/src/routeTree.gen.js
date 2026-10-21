@@ -19,6 +19,8 @@ import { Route as AppHomeRouteImport } from './routes/_app/home'
 import { Route as AppPerfilRouteImport } from './routes/_app/perfil'
 import { Route as AuthCadastroRouteImport } from './routes/_auth/cadastro'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as AppPlanosIndexRouteImport } from './routes/_app/planos/index'
+import { Route as AppPlanosPlanIdRouteImport } from './routes/_app/planos/$planId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -68,6 +70,16 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
 })
+const AppPlanosIndexRoute = AppPlanosIndexRouteImport.update({
+  id: '/planos/',
+  path: '/planos/',
+  getParentRoute: () => AppRoute,
+})
+const AppPlanosPlanIdRoute = AppPlanosPlanIdRouteImport.update({
+  id: '/planos/$planId',
+  path: '/planos/$planId',
+  getParentRoute: () => AppRoute,
+})
 
 const AppRouteChildren = {
   AppBuscarRoute: AppBuscarRoute,
@@ -75,6 +87,8 @@ const AppRouteChildren = {
   AppHojeRoute: AppHojeRoute,
   AppHomeRoute: AppHomeRoute,
   AppPerfilRoute: AppPerfilRoute,
+  AppPlanosPlanIdRoute: AppPlanosPlanIdRoute,
+  AppPlanosIndexRoute: AppPlanosIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
