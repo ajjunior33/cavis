@@ -20,5 +20,7 @@ export class MoodsController {
   @Post('/')
   public async create(
     @Body(new ZodValidationPipe(createMoodSchema)) body: CreateMoodDTO,
-  ) {}
+  ) {
+    return this.moodsService.create(body);
+  }
 }

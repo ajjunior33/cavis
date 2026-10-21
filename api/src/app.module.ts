@@ -4,6 +4,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { validateEnv } from './config/env';
 import { AuthModule } from './module/auth/auth.module';
 import { AuthGuard } from './module/auth/presentation/http/guards/auth.guard';
+import { CheckInsModule } from './module/check-ins/check-ins.module';
 import { HealthModule } from './module/health/health.module';
 import { MoodsModule } from './module/moods/moods.module';
 import { UsersModule } from './module/users/users.module';
@@ -20,6 +21,7 @@ import { DrizzleModule } from './shared/database/drizzle/drizzle.module';
     HealthModule,
     UsersModule,
     MoodsModule,
+    CheckInsModule,
     AuthModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: AuthGuard }],

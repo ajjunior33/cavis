@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { eq, isNull } from 'drizzle-orm';
+import { and, eq, isNull } from 'drizzle-orm';
 import { DrizzleService } from '../../../../shared/database/drizzle/drizzle.service';
 import {
   Mood,
@@ -16,6 +16,15 @@ export class MoodsRepository {
       .select()
       .from(MOODS)
       .where(eq(MOODS.slug, slug));
+
+    return mood || null;
+  }
+
+  public async findById(id: string): Promise<Mood | null> {
+    const [mood] = await this.drizzleService.db
+      .select()
+      .from(MOODS)
+      .where(and(eq(MOODS.id, id), isNull(MOODS.deletedAt)));
 
     return mood || null;
   }

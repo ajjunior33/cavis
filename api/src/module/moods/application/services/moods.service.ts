@@ -11,6 +11,10 @@ export class MoodsService {
     return this.moodsRepository.getAll();
   }
 
+  public async findById(id: string) {
+    return this.moodsRepository.findById(id);
+  }
+
   public async create(data: CreateMoodDTO) {
     const moodSlug = slugify(data.label);
     const mood = await this.moodsRepository.findBySlug(moodSlug);

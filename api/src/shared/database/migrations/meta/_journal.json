@@ -15,6 +15,13 @@
       "when": 1792569685301,
       "tag": "0001_mixed_shinko_yamashiro",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792571864230,
+      "tag": "0002_create_check_ins",
+      "breakpoints": true
     }
   ]
 }
