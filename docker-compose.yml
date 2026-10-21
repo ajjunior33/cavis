@@ -75,7 +75,7 @@ services:
         labels:
             - traefik.enable=true
             - traefik.docker.network=traefik-public
-            - traefik.http.routers.clavis-ui.rule=Host(`clavis.seudominio.com`)
+            - traefik.http.routers.clavis-ui.rule=Host(`clavis.meraki.dev.br`)
             - traefik.http.routers.clavis-ui.entrypoints=websecure
             - traefik.http.routers.clavis-ui.tls.certresolver=letsencrypt
             - traefik.http.services.clavis-ui.loadbalancer.server.port=80
